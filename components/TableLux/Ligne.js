@@ -1,25 +1,27 @@
-function Ligne({ headers, ligne, nLigne, funcModifLigne, funcSupp, boolModif }) {
+import { useEffect, useState } from "react"
+
+function Ligne({ headers, ligne, funcModifLigne, funcSupp, boolModif }) {
     let cols = []
     headers.map((header, index) => {
         cols = [...cols, ...[
             <td
                 key={index}
-                className="bg-red-400 px-6 py-4 whitespace-nowrap"
+                className="px-6 py-4 whitespace-nowrap"
+                onDoubleClick={() => funcModifLigne(ligne.id, header.label)}
             >
-                {`${header} sur la ligne ${nLigne + 1} n'éxiste pas`}
             </td>
         ]]
     })
     headers.map((header, index) => {
-        for (let indexL in ligne) {
-            header === indexL && (
+        for (let indexL in ligne.data) {
+            header.label === indexL && (
                 cols[index] = (
                     <td
-                        key={index}
-                        onDoubleClick={() => funcModifLigne(nLigne, indexL)}
+                        key={indexL}
+                        onDoubleClick={() => funcModifLigne(ligne.id, indexL)}
                         className="px-6 py-4 whitespace-nowrap"
                     >
-                        {ligne[indexL]}
+                        {ligne.data[indexL].label}
                     </td>)
             )
         }
@@ -32,7 +34,7 @@ function Ligne({ headers, ligne, nLigne, funcModifLigne, funcSupp, boolModif }) 
                 boolModif && (
                     <td>
                         <button
-                            onClick={() => funcSupp(nLigne)}
+                            onClick={() => funcSupp(ligne.id)}
                             className="ml-5 mr-3"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" className="bi bi-trash-fill" viewBox="0 0 16 16">
