@@ -1,11 +1,12 @@
 import TableLux from '../components/TableLux'
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { db } from '../firebase'
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+
 
 function useTable() {
-
+    // const fruitRef = db.collection('test').doc('m53acJMHSJvfjIyO3nv9');
     const fruitRef = db.collection('buisnessPlanPrevisionnel').doc('FruitFrais');
-
 
     /* set format tableau
     useEffect(() => {
@@ -21,9 +22,10 @@ function useTable() {
         //             unite: "kgs"
         //         }
         //     ],
-        //     type:"tableau"
+        //     type: "tableau",
+        //     name: "fruit frais"
         // };
-        // db.collection('buisnessPlanPrevisionnel').doc('FruitFrais').set(dataTable);
+        // fruitRef.set(dataTable)
         // console.log("information table a été ajouter")
 
         const ligne = {
@@ -39,22 +41,31 @@ function useTable() {
                 survole: "ça marche 2"
             }
         };
-        db.collection('buisnessPlanPrevisionnel').doc('FruitFrais').collection('lignes').doc('ligne2').set(ligne);
+        const ligne2 = {
+            Désignation: {
+                label: "agrume 25cl",
+                couleur: "yellow"
+            },
+            RefMP: {
+                label: "AGR-001",
+            },
+            Quantité: {
+                label: "50",
+                survole: "OKKK"
+            }
+        };
+        fruitRef.collection('lignes').add(ligne);
+        fruitRef.collection('lignes').add(ligne2);
         console.log("ligne ajouter avec succes")
+
     }, [])
     // */
-    const persAjout = () => {
-        console.log("Ajouter")
-    }
-
-    const persModif = (ligne, col) => {
-        console.log(ligne, col)
+    const triggerModif = (one, two, three) => {
+        console.log("modification : ", one, two, three)
     }
 
     return (
-        <div>
-            <TableLux documentRef={fruitRef} modification={true} />
-        </div>
+        <TableLux documentRef={fruitRef} modification={true} onModif={triggerModif} />
     )
 }
 

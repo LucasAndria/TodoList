@@ -2,18 +2,19 @@ import { useEffect, useState } from "react"
 
 function Ligne({ headers, ligne, funcModifLigne, funcSupp, boolModif }) {
     let cols = []
-    headers.map((header, index) => {
+    headers?.map((header, index) => {
         cols = [...cols, ...[
             <td
                 key={index}
                 className="px-6 py-4 whitespace-nowrap"
-                onDoubleClick={() => funcModifLigne(ligne.id, header.label)}
+                onDoubleClick={() => funcModifLigne(ligne?.id, header?.label)}
             >
+                {/* {ligne?.id + " " + header?.label} */}
             </td>
         ]]
     })
-    headers.map((header, index) => {
-        for (let indexL in ligne.data) {
+    headers?.map((header, index) => {
+        for (let indexL in ligne?.data) {
             header.label === indexL && (
                 cols[index] = (
                     <td
@@ -22,6 +23,7 @@ function Ligne({ headers, ligne, funcModifLigne, funcSupp, boolModif }) {
                         className="px-6 py-4 whitespace-nowrap"
                     >
                         {ligne.data[indexL].label}
+                        {/* {ligne.id + ' = ' + indexL} */}
                     </td>)
             )
         }

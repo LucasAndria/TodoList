@@ -1,15 +1,12 @@
-import React from 'react'
+import { db } from "../firebase"
+import { doc, onSnapshot } from "firebase/firestore";
 
 function test() {
 
-    const arr = [{ ok: "haha" }, "2"]
-    const obj = { one: 1, two: 2 }
 
-    arr.map(
-        arrs => {
-            console.log(typeof arrs)
-        }
-    )
+    onSnapshot(doc(db, "buisnessPlanPrevisionnel", "FruitFrais"), (doc) => {
+        console.log("Current data: ", doc.data());
+    })
 
     return (
         <div>

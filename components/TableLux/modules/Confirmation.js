@@ -11,8 +11,8 @@ function Confirmation({ toggleModal, setBool, text = "Confirmer ?" }) {
                     <form className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
                         <h4 className="text-xl font-medium flex justify-center">{text}</h4>
                         <div className="flex justify-between">
-                            <button onClick={(e) => (e.preventDefault(), setBool((prev) => ({ ...prev, ...{ bool: true } })), toggleModal(false))} className="mr-5 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center">Confirmer</button>
-                            <button onClick={(e) => (e.preventDefault(), setBool((prev) => ({ ...prev, ...{ bool: false } })), toggleModal(false))} className="text-white bg-blue-500 hover:bg-blue-400 font-medium rounded-lg text-sm px-4 py-2 text-center">Annuler</button>
+                            <button onClick={(e) => (e.preventDefault(), toggleModal(false), setBool((prev) => ({ ...prev, ...{ bool: true } })))} className="mr-5 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center">Confirmer</button>
+                            <button onClick={(e) => (e.preventDefault(), toggleModal(false), setBool({ index: null, bool: false }))} className="text-white bg-blue-500 hover:bg-blue-400 font-medium rounded-lg text-sm px-4 py-2 text-center">Annuler</button>
                         </div>
                     </form>
                 </div >

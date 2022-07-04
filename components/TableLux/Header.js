@@ -11,9 +11,10 @@ function Header({ headers, trie, trieLigne }) {
             onMouseOver={() => console.log(header.survole)}
             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap"
         >
-            {`${header.label} ${header.unite ? "(" + header.unite + ")" : ""} ${trie.header === header.label ? (trie.croissant ? "<" : ">") : ""}`}
+            {`${header.label} ${header.unite ? "(" + header.unite + ")" : ""} ${trie.header === header.label ? (trie.croissant ? "▼" : "▲") : ""}`}
         </th >
     ))
+
     return (
         <tr>
             {formatedHeaders}

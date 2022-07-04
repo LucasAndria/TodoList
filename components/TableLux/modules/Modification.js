@@ -1,4 +1,4 @@
-function Modification({ toogleModal, modifierLigne, modifVal }) {
+function Modification({ toogleModal, modifierLigne, modifVal, setModifVal }) {
     var inputVal = modifVal.val
     return (
         <div className="backdrop-blur-sm bg-white/50 overflow-y-auto overflow-x-hidden fixed justify-center items-center h-modal md:h-full md:inset-0">
@@ -13,8 +13,8 @@ function Modification({ toogleModal, modifierLigne, modifVal }) {
                         <div>
                             <input onChange={e => (inputVal = e.target.value)} placeholder={modifVal.val} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></input>
                         </div>
-                        <button onClick={(e) => (e.preventDefault(), modifierLigne(modifVal.numLigne, modifVal.col, inputVal))} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Appliquers</button>
-                        <button onClick={(e) => (e.preventDefault(), toogleModal(false))} type="submit" className="ml-4 text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Annuler</button>
+                        <button onClick={(e) => (e.preventDefault(), modifierLigne(modifVal.ligneId, modifVal.col, inputVal))} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Appliquers</button>
+                        <button onClick={(e) => (e.preventDefault(), () => setModifVal({ ligneId: null, col: "", val: "" }), toogleModal(false))} type="submit" className="ml-4 text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Annuler</button>
                     </form>
                 </div>
             </div >
