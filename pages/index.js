@@ -31,6 +31,11 @@ export default function Home() {
           Test
         </button>
       </div>
+      <div>
+        <button onClick={() => goTo("test2")}>
+          Test2
+        </button>
+      </div>
     </div>
   )
 }
