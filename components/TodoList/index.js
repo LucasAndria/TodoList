@@ -55,7 +55,9 @@ function TodoList() {
     }
 
     return (
-        <div className="div">
+        <div className="w-full h-screen bg-[#9EF9D8]">
+            <h1 className="text-gray-800 text-2xl text-center pt-5">TODO List</h1>
+            <p className="text-red-800 text-sm text-center pt-5">NB : It will not really work without connection</p>
             <Ajout funcAjout={funcAjout} />
             {/* <Liste todoList={todoList} funcModif={funcModif} funcSupp={funcSupp} /> */}
             <Liste todoList={todoList} funcSupp={funcSupp} />
