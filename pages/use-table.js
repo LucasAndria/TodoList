@@ -8,25 +8,24 @@ function useTable() {
     // const fruitRef = db.collection('test').doc('m53acJMHSJvfjIyO3nv9');
     const fruitRef = db.collection('buisnessPlanPrevisionnel').doc('FruitFrais');
 
-    /* set format tableau
     useEffect(() => {
-        // const dataTable = {
+        const dataTable = {
 
-        //     description: "tableau d'achat de matiere premieres brutes pour la transformation",
-        //     headers: [
-        //         { label: "Désignation" },
-        //         { label: "RefMP" },
-        //         {
-        //             label: "Quantité",
-        //             survole: "blabla",
-        //             unite: "kgs"
-        //         }
-        //     ],
-        //     type: "tableau",
-        //     name: "fruit frais"
-        // };
+            description: "tableau d'achat de matiere premieres brutes pour la transformation",
+            headers: [
+                { label: "Désignation" },
+                { label: "RefMP" },
+                {
+                    label: "Quantité",
+                    survole: "blabla",
+                    unite: "kgs"
+                }
+            ],
+            type: "tableau",
+            name: "fruit frais"
+        };
         // fruitRef.set(dataTable)
-        // console.log("information table a été ajouter")
+        console.log("information table a été ajouter")
 
         const ligne = {
             Désignation: {
@@ -54,12 +53,12 @@ function useTable() {
                 survole: "OKKK"
             }
         };
-        fruitRef.collection('lignes').add(ligne);
-        fruitRef.collection('lignes').add(ligne2);
+        // fruitRef.collection('lignes').add(ligne);
+        // fruitRef.collection('lignes').add(ligne2);
         console.log("ligne ajouter avec succes")
 
     }, [])
-    // */
+
     const triggerModif = (one, two, three) => {
         console.log("modification : ", one, two, three)
     }
