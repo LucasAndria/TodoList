@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-function Formule({ modalModif, setModalModif }) {
+function Formule({ headers, modalModif, setModalModif, changeValHeader, idH }) {
 
     const [formule, setFormule] = useState({ real: '', toShow: '' })
 
@@ -17,13 +17,27 @@ function Formule({ modalModif, setModalModif }) {
         setParenthese(true)
     }
 
+    const confirmer = () => {
+        changeValHeader(idH, 'formule', formule)
+    }
+
     const getElement = (e) => {
         let val = ''
         if (e.target.textContent === '( )') { val = parenthese ? '(' : ')', setParenthese(!parenthese) }
-        else if (e.target.textContent === 'OK') { setModalModif(false), !parenthese && setFormule(f => ({ real: f.real + ')', toShow: f.toShow + ')' })) }
+        else if (e.target.textContent === 'OK') {
+            (
+                setModalModif(false),
+                !parenthese && setFormule(f => ({ real: f.real + ')', toShow: f.toShow + ')' })),
+                confirmer()
+            )
+        }
         else { val = e.target.textContent }
 
         setFormule(f => ({ real: f.real + val, toShow: f.toShow + val }))
+    }
+
+    const getChamp = (vr, vs) => {
+        setFormule(f => ({ real: f.real + vr, toShow: f.toShow + vs }))
     }
 
     return (
@@ -42,10 +56,10 @@ function Formule({ modalModif, setModalModif }) {
                 </div>
                 <div className="grid md:grid-cols-2 xl:grid-cols-3">
                     <div className="text-lg md:col-span-2 xl:col-span-3 text-center">Formule avec les champs du tableau</div>
+                    {headers.map((header, index) => (
+                        header.label && <div key={index} onClick={() => getChamp(`(obj.${header.id}.label)`, `(${header.label})`)} className="text-center bg-gray-400 m-2 rounded cursor-pointer hover:scale-105 text-black h-8">{header.label}</div>
+                    ))}
 
-                    <div className="text-center bg-gray-400 m-2 rounded cursor-pointer hover:scale-105 text-black h-8">Designation</div>
-                    <div className="text-center bg-gray-400 m-2 rounded cursor-pointer hover:scale-105 text-black h-8">Designation</div>
-                    <div className="text-center bg-gray-400 m-2 rounded cursor-pointer hover:scale-105 text-black h-8">Designation</div>
                 </div>
                 <div className="grid grid-cols-4 h-[250px]">
                     <div className="text-lg col-span-4 text-center">Formule de base</div>
