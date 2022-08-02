@@ -30,7 +30,6 @@ function TodoList() {
         });
 
         refresh()
-
     }
 
     // async function funcModif(index, value) {
