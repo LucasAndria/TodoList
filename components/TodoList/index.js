@@ -3,6 +3,7 @@ import { db } from '../../firebase'
 import { collection, getDocs, addDoc, doc, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
 import Ajout from "./Ajout"
 import Liste from "./Liste"
+import Document from "next/document"
 
 function TodoList() {
     const [todoList, setTodoListe] = useState([])
