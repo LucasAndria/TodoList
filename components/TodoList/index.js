@@ -3,7 +3,6 @@ import { db } from '../../firebase'
 import { collection, getDocs, addDoc, doc, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
 import Ajout from "./Ajout"
 import Liste from "./Liste"
-import Document from "next/document"
 
 function TodoList() {
     const [todoList, setTodoListe] = useState([])
@@ -33,19 +32,6 @@ function TodoList() {
         refresh()
     }
 
-    // async function funcModif(index, value) {
-    //     const tmp = todoList
-    //     tmp.splice(index, 1, value)
-
-    //     console.log(todoList)
-    // }
-
-    // useEffect(() => {
-    //     setTodoListe(tmp)
-    // }, [tmp])
-
-
-
     async function funcSupp(index) {
 
         const newArr = todoList.filter((todo) => todo.id !== index)
@@ -56,10 +42,8 @@ function TodoList() {
 
     return (
         <div className="w-full h-screen bg-[#9EF9D8]">
-            <h1 className="text-gray-800 text-2xl text-center pt-5">TODO List</h1>
-            <p className="text-red-800 text-sm text-center pt-5">NB : It will not really work without connection</p>
+            <h1 className="text-gray-800 text-2xl text-center pt-8">TODO List</h1>
             <Ajout funcAjout={funcAjout} />
-            {/* <Liste todoList={todoList} funcModif={funcModif} funcSupp={funcSupp} /> */}
             <Liste todoList={todoList} funcSupp={funcSupp} />
         </div>
     )
